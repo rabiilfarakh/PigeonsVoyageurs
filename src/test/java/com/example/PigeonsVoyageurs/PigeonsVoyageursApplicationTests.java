@@ -8,6 +8,6 @@ class PigeonsVoyageursApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
 
+	}
 }
