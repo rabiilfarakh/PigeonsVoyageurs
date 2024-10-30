@@ -1,6 +1,7 @@
 package com.example.PigeonsVoyageurs.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -14,17 +15,20 @@ public class Competition {
     private Coordinate releasePoint;
     private Date start;
     private double previewedDistance;
-    private Organiser organiser;  // Reference to Organiser
-    private List<Pigeon> pigeons; // List of Pigeons participating
+    // Relation Many-to-Many avec Pigeon
+    @DBRef
+    private List<Pigeon> participants;
+    // Liste des classements pour chaque pigeon dans la compétition
+    private List<Ranking> rankings;
 
-    public Competition(Long id, String raceName, Coordinate releasePoint, Date start, double previewedDistance, Organiser organiser, List<Pigeon> pigeons) {
+    public Competition(Long id, String raceName, Coordinate releasePoint, Date start, double previewedDistance, List<Pigeon> participants, List<Ranking> rankings) {
         this.id = id;
         this.raceName = raceName;
         this.releasePoint = releasePoint;
         this.start = start;
         this.previewedDistance = previewedDistance;
-        this.organiser = organiser;
-        this.pigeons = pigeons;
+        this.participants = participants;
+        this.rankings = rankings;
     }
 
     public Long getId() {
@@ -67,21 +71,21 @@ public class Competition {
         this.previewedDistance = previewedDistance;
     }
 
-    public Organiser getOrganiser() {
-        return organiser;
+    public List<Pigeon> getParticipants() {
+        return participants;
     }
 
-    public void setOrganiser(Organiser organiser) {
-        this.organiser = organiser;
+    public void setParticipants(List<Pigeon> participants) {
+        this.participants = participants;
     }
 
-    public List<Pigeon> getPigeons() {
-        return pigeons;
+    public List<Ranking> getRankings() {
+        return rankings;
     }
 
-    public void setPigeons(List<Pigeon> pigeons) {
-        this.pigeons = pigeons;
+    public void setRankings(List<Ranking> rankings) {
+        this.rankings = rankings;
     }
 
-    // Getters and Setters
+
 }

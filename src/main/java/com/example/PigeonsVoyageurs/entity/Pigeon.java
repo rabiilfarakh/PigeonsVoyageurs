@@ -1,7 +1,10 @@
 package com.example.PigeonsVoyageurs.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Document(collection = "pigeons")
 public class Pigeon {
@@ -10,7 +13,12 @@ public class Pigeon {
     private char sexe;
     private int age;
     private String color;
-    private Breeder breeder;  // Reference to Breeder
+    // Relation Many-to-One avec Breeder
+    @DBRef
+    private Breeder breeder;
+    // Relation Many-to-Many avec Competition
+    @DBRef
+    private List<Competition> competitions;
 
     public Pigeon(String bagueNumber, char sexe, int age, String color, Breeder breeder) {
         this.bagueNumber = bagueNumber;

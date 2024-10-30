@@ -1,6 +1,7 @@
 package com.example.PigeonsVoyageurs.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -14,8 +15,12 @@ public class Ranking {
     private double distance;
     private double speed;
     private double score;
-    private Pigeon pigeon;  // Reference to Pigeon
-    private Competition competition; // Reference to Competition
+    // Référence vers le document Pigeon
+    @DBRef
+    private Pigeon pigeon;
+    // Référence vers le document Competition
+    @DBRef
+    private Competition competition;
 
     public Ranking(Long id, int rank, Date arrive, double distance, double speed, double score, Pigeon pigeon, Competition competition) {
         this.id = id;
