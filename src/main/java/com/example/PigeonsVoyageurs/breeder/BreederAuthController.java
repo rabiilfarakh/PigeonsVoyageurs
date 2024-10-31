@@ -17,6 +17,7 @@ public class BreederAuthController {
     public String getToken(
             @RequestHeader("param1") String param1,
             @RequestHeader("param2") String param2){
-        return "";
+
+
     }
 }
