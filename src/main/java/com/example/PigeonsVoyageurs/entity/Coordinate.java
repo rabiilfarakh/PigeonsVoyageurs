@@ -1,6 +1,6 @@
 package com.example.PigeonsVoyageurs.entity;
 
-class Coordinate {
+public class Coordinate {
     private double latitude;
     private double longitude;
 

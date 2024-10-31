@@ -1,5 +1,6 @@
-package com.example.PigeonsVoyageurs.entity;
+package com.example.PigeonsVoyageurs.organiser;
 
+import com.example.PigeonsVoyageurs.entity.Competition;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;

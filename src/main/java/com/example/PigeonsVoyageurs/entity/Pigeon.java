@@ -1,5 +1,6 @@
 package com.example.PigeonsVoyageurs.entity;
 
+import com.example.PigeonsVoyageurs.breeder.Breeder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
