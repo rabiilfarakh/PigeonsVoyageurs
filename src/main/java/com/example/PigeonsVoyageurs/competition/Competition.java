@@ -1,8 +1,8 @@
 package com.example.PigeonsVoyageurs.competition;
 
-import com.example.PigeonsVoyageurs.entities.Coordinate;
-import com.example.PigeonsVoyageurs.entities.Pigeon;
-import com.example.PigeonsVoyageurs.entities.Ranking;
+import com.example.PigeonsVoyageurs.coordinate.Coordinate;
+import com.example.PigeonsVoyageurs.pigeon.Pigeon;
+import com.example.PigeonsVoyageurs.ranking.Ranking;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
