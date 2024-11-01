@@ -15,11 +15,8 @@ public class BreederServiceImpl implements BreederService{
     @Autowired
     private BreederRepository breederRepository;
 
-    private final Mapper<Breeder, BreederDTO> breederMapper;
-
-    public BreederServiceImpl(Mapper<Breeder, BreederDTO> breederMapper) {
-        this.breederMapper = breederMapper;
-    }
+    @Autowired
+    private Mapper<Breeder, BreederDTO> breederMapper;
 
     @Override
     public Optional<BreederDTO> get(long id) {
@@ -40,15 +37,15 @@ public class BreederServiceImpl implements BreederService{
     }
 
     @Override
-    public BreederDTO save(BreederDTO breederDTO) {
+    public Optional<BreederDTO> save(BreederDTO breederDTO) {
         Breeder breeder = breederMapper.fromDTO(breederDTO);
-        return breederMapper.toDTO(breederRepository.insert(breeder));
+        return Optional.of(breederMapper.toDTO(breederRepository.insert(breeder)));
     }
 
     @Override
-    public BreederDTO update(BreederDTO breederDTO) {
+    public Optional<BreederDTO> update(BreederDTO breederDTO) {
         Breeder breeder = breederMapper.fromDTO(breederDTO);
-        return breederMapper.toDTO(breederRepository.save(breeder));
+        return Optional.of(breederMapper.toDTO(breederRepository.save(breeder)));
     }
 
     @Override

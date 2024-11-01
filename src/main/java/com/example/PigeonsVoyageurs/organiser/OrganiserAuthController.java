@@ -1,6 +1,6 @@
-package com.example.PigeonsVoyageurs.breeder;
+package com.example.PigeonsVoyageurs.organiser;
 
-import com.example.PigeonsVoyageurs.breeder.service.BreederServiceImpl;
+import com.example.PigeonsVoyageurs.organiser.service.OrganiserServiceImpl;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import javax.validation.Valid;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api/breeder")
-public class BreederAuthController {
+@RequestMapping("/api/organiser")
+public class OrganiserAuthController {
     @Autowired
-    private BreederServiceImpl breederService;
+    private OrganiserServiceImpl organiserService;
 
 
     @Value("${jwt.secret}")
@@ -29,14 +29,14 @@ public class BreederAuthController {
     public ResponseEntity<String> login(
             @RequestHeader("user_name") String userName,
             @RequestHeader("password") String password){
-        List<BreederDTO> breederDTOS = breederService.getAll();
+        List<OrganiserDTO> organiserDTOS = organiserService.getAll();
 
-        Optional<BreederDTO> optionalBreederDTO = breederDTOS.stream()
-                .filter(breederDTO -> breederDTO.getUserName().equals(userName) && breederDTO.getPassword().equals(password))
+        Optional<OrganiserDTO> optionalOrganiserDTO = organiserDTOS.stream()
+                .filter(organiserDTO -> organiserDTO.getUserName().equals(userName) && organiserDTO.getPassword().equals(password))
                 .findFirst();
 
-        if (optionalBreederDTO.isPresent()){
-            BreederDTO authBreeder = optionalBreederDTO.get();
+        if (optionalOrganiserDTO.isPresent()){
+            OrganiserDTO authBreeder = optionalOrganiserDTO.get();
 
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", authBreeder.getId());
@@ -45,7 +45,7 @@ public class BreederAuthController {
             String token = createToken(optionalUsername, claims);
 
             authBreeder.setToken(token);
-            breederService.update(authBreeder);
+            organiserService.update(authBreeder);
 
             return new ResponseEntity<>("Your token:" + token, HttpStatus.OK);
         }else {
@@ -65,8 +65,8 @@ public class BreederAuthController {
                 .compact();
     }
     @PostMapping(name = "/signup")
-    public ResponseEntity<String> signup(@RequestHeader @Valid BreederDTO breederDTO){
-        Optional<BreederDTO> optionalSavedBreeder = breederService.save(breederDTO);
+    public ResponseEntity<String> signup(@RequestHeader @Valid OrganiserDTO organiserDTO){
+        Optional<OrganiserDTO> optionalSavedBreeder = organiserService.save(organiserDTO);
 
         return optionalSavedBreeder
                 .map(dto -> new ResponseEntity<>("Successful signup" + dto, HttpStatus.OK))

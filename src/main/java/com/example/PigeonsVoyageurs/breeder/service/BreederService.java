@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface BreederService {
     Optional<BreederDTO> get(long id);
     List<BreederDTO> getAll();
-    BreederDTO save(BreederDTO breederDTO);
-    BreederDTO update(BreederDTO breederDTO);
+    Optional<BreederDTO> save(BreederDTO breederDTO);
+    Optional<BreederDTO> update(BreederDTO breederDTO);
     boolean delete(long id);
 }

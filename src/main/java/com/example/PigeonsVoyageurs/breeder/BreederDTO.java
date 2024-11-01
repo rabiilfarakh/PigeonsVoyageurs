@@ -4,19 +4,24 @@ import com.example.PigeonsVoyageurs.coordinate.Coordinate;
 import com.example.PigeonsVoyageurs.pigeon.Pigeon;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class BreederDTO {
     private Long id;
+    @NotEmpty
     private String dovecoteName;
+    @NotEmpty
     private String userName;
+    @NotEmpty
     private String password;
+    @NotEmpty
     private Coordinate coordinates;
+    private String token;
     // Relation One-to-Many avec Pigeon
     private List<Pigeon> pigeons;
 
-    public BreederDTO(Long id, String dovecoteName, String userName, String password, Coordinate coordinates) {
-        this.id = id;
+    public BreederDTO(String dovecoteName, String userName, String password, Coordinate coordinates) {
         this.dovecoteName = dovecoteName;
         this.userName = userName;
         this.password = password;
@@ -63,11 +68,29 @@ public class BreederDTO {
         this.coordinates = coordinates;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public List<Pigeon> getPigeons() {
         return pigeons;
     }
 
     public void setPigeons(List<Pigeon> pigeons) {
         this.pigeons = pigeons;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "dovecoteName='" + dovecoteName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", coordinates=" + coordinates +
+                '}';
     }
 }

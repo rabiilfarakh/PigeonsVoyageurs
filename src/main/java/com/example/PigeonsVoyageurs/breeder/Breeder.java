@@ -18,6 +18,7 @@ public class Breeder {
     private String userName;
     private String password;
     private Coordinate coordinates;
+    private String token;
     // Relation One-to-Many avec Pigeon
     @DBRef
     private List<Pigeon> pigeons;
