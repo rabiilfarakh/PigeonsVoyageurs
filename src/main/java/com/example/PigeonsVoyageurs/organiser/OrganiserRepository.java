@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface OrganiserRepository extends MongoRepository<Organiser, Long> {
+public interface OrganiserRepository extends MongoRepository<Organiser, String> {
     Optional<Organiser> findByEmail(String email);
 }

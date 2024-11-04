@@ -12,12 +12,13 @@ public interface OrganiserService {
 
     Optional<String> login(String userName, String password);
 
-    Optional<Organiser> findById(Long id);
+    Optional<Organiser> findById(String id);
 
     Optional<Organiser> findByEmail(String email);
+
     List<Organiser> findAll();
 
-    Organiser update(Long id, OrganiserDTO organiserDTO);
+    Organiser update(String id, OrganiserDTO organiserDTO);
 
-    void delete(Long id);
+    void delete(String id);
 }
