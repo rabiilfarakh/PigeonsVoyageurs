@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/breeder/login")
 public class BreederAuthController {
 
-    @Value("${jwt.secret}")
-    private String secret;
-
-    @PostMapping
-    public String getToken(
-            @RequestHeader("param1") String param1,
-            @RequestHeader("param2") String param2){
-        return "";
-    }
+//    @Value("${jwt.secret}")
+//    private String secret;
+//
+//    @PostMapping
+//    public String getToken(
+//            @RequestHeader("param1") String param1,
+//            @RequestHeader("param2") String param2){
+//        return "";
+//    }
 }
