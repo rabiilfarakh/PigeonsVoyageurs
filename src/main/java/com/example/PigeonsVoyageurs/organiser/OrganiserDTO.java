@@ -1,18 +1,13 @@
 package com.example.PigeonsVoyageurs.organiser;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+
 
 public class OrganiserDTO {
 
-    @NotBlank(message = "Le nom d'utilisateur ne peut pas être vide")
     private String userName;
 
-    @NotBlank(message = "Le mot de passe ne peut pas être vide")
     private String password;
 
-    @NotBlank(message = "L'email ne peut pas être vide")
-    @Email(message = "Email invalide")
     private String email;
 
     public OrganiserDTO(String userName, String password, String email) {

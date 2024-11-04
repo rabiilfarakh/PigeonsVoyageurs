@@ -3,8 +3,6 @@ package com.example.PigeonsVoyageurs.organiser;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
 @Document(collection = "organisers")
 public class Organiser {
@@ -12,14 +10,10 @@ public class Organiser {
     @Id
     private Long id;
 
-    @NotBlank(message = "Le nom d'utilisateur ne peut pas être vide")
     private String userName;
 
-    @NotBlank(message = "Le mot de passe ne peut pas être vide")
     private String password;
 
-    @NotBlank(message = "L'email ne peut pas être vide")
-    @Email(message = "Email invalide")
     private String email;
 
     public Organiser() {}
