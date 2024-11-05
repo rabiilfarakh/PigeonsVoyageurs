@@ -1,7 +1,8 @@
 package com.example.PigeonsVoyageurs.organiser.service;
 
 import com.example.PigeonsVoyageurs.organiser.Organiser;
-import com.example.PigeonsVoyageurs.organiser.OrganiserDTO;
+import com.example.PigeonsVoyageurs.organiser.dto.OrganiserRequestDTO;
+import com.example.PigeonsVoyageurs.organiser.dto.OrganiserResponseDTO;
 import com.example.PigeonsVoyageurs.organiser.OrganiserMapper;
 import com.example.PigeonsVoyageurs.organiser.OrganiserRepository;
 import org.mindrot.jbcrypt.BCrypt;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrganiserServiceImpl implements OrganiserService {
@@ -24,23 +26,19 @@ public class OrganiserServiceImpl implements OrganiserService {
     }
 
     @Override
-    public Organiser register(OrganiserDTO organiserDTO) {
-
-        String hashedPassword = BCrypt.hashpw(organiserDTO.getPassword(), BCrypt.gensalt());
-
+    public OrganiserResponseDTO register(OrganiserRequestDTO organiserDTO) {
+        String hashedPassword = BCrypt.hashpw(organiserDTO.password(), BCrypt.gensalt());
         Organiser organiser = organiserMapper.toEntity(organiserDTO);
         organiser.setPassword(hashedPassword);
-
-        return organiserRepository.save(organiser);
+        Organiser savedOrganiser = organiserRepository.save(organiser);
+        return organiserMapper.toResponseDTO(savedOrganiser);
     }
 
     @Override
     public Optional<String> login(String email, String password) {
-
         Optional<Organiser> organiserOpt = organiserRepository.findByEmail(email);
         if (organiserOpt.isPresent()) {
             Organiser organiser = organiserOpt.get();
-
             if (BCrypt.checkpw(password, organiser.getPassword())) {
                 return Optional.of("Login successful");
             }
@@ -49,36 +47,40 @@ public class OrganiserServiceImpl implements OrganiserService {
     }
 
     @Override
-    public Optional<Organiser> findById(String id) {
-        return organiserRepository.findById(id);
+    public Optional<OrganiserResponseDTO> findById(String id) {
+        return organiserRepository.findById(id)
+                .map(organiserMapper::toResponseDTO);
     }
 
     @Override
-    public Optional<Organiser> findByEmail(String email) {
-        return organiserRepository.findByEmail(email);
+    public Optional<OrganiserResponseDTO> findByEmail(String email) {
+        return organiserRepository.findByEmail(email)
+                .map(organiserMapper::toResponseDTO);
     }
 
     @Override
-    public List<Organiser> findAll() {
-        return organiserRepository.findAll();
+    public List<OrganiserResponseDTO> findAll() {
+        return organiserRepository.findAll().stream()
+                .map(organiserMapper::toResponseDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Organiser update(String id, OrganiserDTO organiserDTO) {
-
+    public OrganiserResponseDTO update(String id, OrganiserRequestDTO organiserDTO) {
         Organiser organiser = organiserRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Organiser not found"));
 
-        organiser.setUserName(organiserDTO.getUserName());
+        organiser.setUserName(organiserDTO.userName());
 
-        if (organiserDTO.getPassword() != null && !organiserDTO.getPassword().isEmpty()) {
-            String hashedPassword = BCrypt.hashpw(organiserDTO.getPassword(), BCrypt.gensalt());
+        if (organiserDTO.password() != null && !organiserDTO.password().isEmpty()) {
+            String hashedPassword = BCrypt.hashpw(organiserDTO.password(), BCrypt.gensalt());
             organiser.setPassword(hashedPassword);
         }
 
-        organiser.setEmail(organiserDTO.getEmail());
+        organiser.setEmail(organiserDTO.email());
+        Organiser updatedOrganiser = organiserRepository.save(organiser);
 
-        return organiserRepository.save(organiser);
+        return organiserMapper.toResponseDTO(updatedOrganiser);
     }
 
     @Override

@@ -1,24 +1,25 @@
 package com.example.PigeonsVoyageurs.organiser.service;
 
 import com.example.PigeonsVoyageurs.organiser.Organiser;
-import com.example.PigeonsVoyageurs.organiser.OrganiserDTO;
+import com.example.PigeonsVoyageurs.organiser.dto.OrganiserRequestDTO;
+import com.example.PigeonsVoyageurs.organiser.dto.OrganiserResponseDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface OrganiserService {
 
-    Organiser register(OrganiserDTO organiserDTO);
+    OrganiserResponseDTO register(OrganiserRequestDTO organiserDTO);
 
     Optional<String> login(String userName, String password);
 
-    Optional<Organiser> findById(String id);
+    Optional<OrganiserResponseDTO> findById(String id);
 
-    Optional<Organiser> findByEmail(String email);
+    Optional<OrganiserResponseDTO> findByEmail(String email);
 
-    List<Organiser> findAll();
+    List<OrganiserResponseDTO> findAll();
 
-    Organiser update(String id, OrganiserDTO organiserDTO);
+    OrganiserResponseDTO update(String id, OrganiserRequestDTO organiserDTO);
 
     void delete(String id);
 }
