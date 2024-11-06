@@ -14,7 +14,7 @@ import java.util.List;
 @Document(collection = "competitions")
 public class Competition {
     @Id
-    private Long id;
+    private String id;
     private String raceName;
     private Coordinate releasePoint;
     private Date start;
@@ -22,12 +22,12 @@ public class Competition {
 
     @DBRef
     private List<Pigeon> pigeons;
-
+    @DBRef
     private List<Ranking> rankings;
 
     public Competition(){}
 
-    public Competition(Long id, String raceName, Coordinate releasePoint, Date start, double previewedDistance, List<Pigeon> pigeons, List<Ranking> rankings) {
+    public Competition(String id, String raceName, Coordinate releasePoint, Date start, double previewedDistance, List<Pigeon> pigeons, List<Ranking> rankings) {
         this.id = id;
         this.raceName = raceName;
         this.releasePoint = releasePoint;
@@ -37,11 +37,11 @@ public class Competition {
         this.rankings = rankings;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

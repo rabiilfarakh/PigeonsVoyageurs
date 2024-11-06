@@ -13,7 +13,7 @@ import java.util.List;
 @Document(collection = "breeders")
 public class Breeder {
     @Id
-    private Long id;
+    private String id;
     private String dovecoteName;
     private String userName;
     private String password;
@@ -22,7 +22,7 @@ public class Breeder {
     @DBRef
     private List<Pigeon> pigeons;
 
-    public Breeder(Long id, String dovecoteName, String userName, String password, Coordinate coordinates) {
+    public Breeder(String id, String dovecoteName, String userName, String password, Coordinate coordinates) {
         this.id = id;
         this.dovecoteName = dovecoteName;
         this.userName = userName;
@@ -30,11 +30,11 @@ public class Breeder {
         this.coordinates = coordinates;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
