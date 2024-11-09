@@ -12,7 +12,6 @@ public class Season {
     private LocalDateTime endDate;
 
     public Season(String name, LocalDateTime startDate, LocalDateTime endDate) {
-        this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;

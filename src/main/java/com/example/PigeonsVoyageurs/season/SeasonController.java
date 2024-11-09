@@ -44,5 +44,6 @@ public class SeasonController {
         seasonService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
 
