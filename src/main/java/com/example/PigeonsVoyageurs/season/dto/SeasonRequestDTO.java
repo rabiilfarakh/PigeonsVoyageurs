@@ -1,4 +1,6 @@
 package com.example.PigeonsVoyageurs.season.dto;
 
-public class SeasonRequestDTO {
+import java.time.LocalDateTime;
+
+public record SeasonRequestDTO(String name , LocalDateTime startDate , LocalDateTime endDate) {
 }
