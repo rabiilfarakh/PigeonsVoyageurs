@@ -17,16 +17,21 @@ public class Breeder {
     private String dovecoteName;
     private String userName;
     private String password;
+    private String email;
     private Coordinate coordinates;
 
     @DBRef
     private List<Pigeon> pigeons;
 
-    public Breeder(String id, String dovecoteName, String userName, String password, Coordinate coordinates) {
+    public Breeder() {
+    }
+
+    public Breeder(String id, String dovecoteName, String userName, String password, String email, Coordinate coordinates) {
         this.id = id;
         this.dovecoteName = dovecoteName;
         this.userName = userName;
         this.password = password;
+        this.email = email;
         this.coordinates = coordinates;
     }
 
@@ -60,6 +65,14 @@ public class Breeder {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Coordinate getCoordinates() {
