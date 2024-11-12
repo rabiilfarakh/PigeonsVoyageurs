@@ -7,8 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface SeasonMapper {
 
-    SeasonRequestDTO toRequestDTO(Season season);
-
     SeasonResponseDTO toResponseDTO(Season season);
 
     Season toEntity(SeasonRequestDTO seasonDTO);

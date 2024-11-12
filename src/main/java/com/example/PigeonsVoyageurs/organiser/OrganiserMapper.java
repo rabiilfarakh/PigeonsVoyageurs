@@ -9,8 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface OrganiserMapper {
     OrganiserMapper INSTANCE = Mappers.getMapper(OrganiserMapper.class);
 
-    OrganiserRequestDTO toRequestDTO(Organiser organiser);
-
     OrganiserResponseDTO toResponseDTO(Organiser organiser);
 
     Organiser toEntity(OrganiserRequestDTO organiserDTO);
