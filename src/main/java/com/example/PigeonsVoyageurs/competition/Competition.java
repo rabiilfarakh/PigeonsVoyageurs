@@ -1,13 +1,13 @@
 package com.example.PigeonsVoyageurs.competition;
 
 import com.example.PigeonsVoyageurs.coordinate.Coordinate;
-import com.example.PigeonsVoyageurs.pigeon.Pigeon;
 import com.example.PigeonsVoyageurs.ranking.Ranking;
+import com.example.PigeonsVoyageurs.season.Season;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -16,33 +16,35 @@ public class Competition {
     @Id
     private String id;
     private String raceName;
-    private Coordinate releasePoint;
-    private Date start;
-    private double previewedDistance;
-
+    private Coordinate coordinate;
+    private LocalDateTime start;
+    private double Distance;
     @DBRef
-    private List<Pigeon> pigeons;
-    @DBRef
+    private Season season;
     private List<Ranking> rankings;
 
-    public Competition(){}
+    public Competition() {
+    }
 
-    public Competition(String id, String raceName, Coordinate releasePoint, Date start, double previewedDistance, List<Pigeon> pigeons, List<Ranking> rankings) {
-        this.id = id;
-        this.raceName = raceName;
-        this.releasePoint = releasePoint;
-        this.start = start;
-        this.previewedDistance = previewedDistance;
-        this.pigeons = pigeons;
+    public Competition(List<Ranking> rankings, Season season, double distance, LocalDateTime start, Coordinate coordinate, String raceName) {
         this.rankings = rankings;
+        this.season = season;
+        Distance = distance;
+        this.start = start;
+        this.coordinate = coordinate;
+        this.raceName = raceName;
+    }
+
+    public Competition(Season season, double distance, LocalDateTime start, Coordinate coordinate, String raceName) {
+        this.season = season;
+        Distance = distance;
+        this.start = start;
+        this.coordinate = coordinate;
+        this.raceName = raceName;
     }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getRaceName() {
@@ -53,36 +55,36 @@ public class Competition {
         this.raceName = raceName;
     }
 
-    public Coordinate getReleasePoint() {
-        return releasePoint;
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
-    public void setReleasePoint(Coordinate releasePoint) {
-        this.releasePoint = releasePoint;
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public double getPreviewedDistance() {
-        return previewedDistance;
+    public double getDistance() {
+        return Distance;
     }
 
-    public void setPreviewedDistance(double previewedDistance) {
-        this.previewedDistance = previewedDistance;
+    public void setDistance(double distance) {
+        Distance = distance;
     }
 
-    public List<Pigeon> getParticipants() {
-        return pigeons;
+    public Season getSeason() {
+        return season;
     }
 
-    public void setParticipants(List<Pigeon> pigeons) {
-        this.pigeons = pigeons;
+    public void setSeason(Season season) {
+        this.season = season;
     }
 
     public List<Ranking> getRankings() {
