@@ -1,4 +1,6 @@
 package com.example.PigeonsVoyageurs.breeder.dto;
 
-public record BreederRequestDTO(String userName, String password, String email) {
+import com.example.PigeonsVoyageurs.coordinate.Coordinate;
+
+public record BreederRequestDTO(String userName, String password, String email, Coordinate coordinate) {
 }
