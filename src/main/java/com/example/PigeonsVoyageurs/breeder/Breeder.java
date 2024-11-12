@@ -14,7 +14,6 @@ import java.util.List;
 public class Breeder {
     @Id
     private String id;
-    private String dovecoteName;
     private String userName;
     private String password;
     private String email;
@@ -26,9 +25,8 @@ public class Breeder {
     public Breeder() {
     }
 
-    public Breeder(String id, String dovecoteName, String userName, String password, String email, Coordinate coordinates) {
+    public Breeder(String id, String userName, String password, String email, Coordinate coordinates) {
         this.id = id;
-        this.dovecoteName = dovecoteName;
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -41,14 +39,6 @@ public class Breeder {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getDovecoteName() {
-        return dovecoteName;
-    }
-
-    public void setDovecoteName(String dovecoteName) {
-        this.dovecoteName = dovecoteName;
     }
 
     public String getUserName() {
