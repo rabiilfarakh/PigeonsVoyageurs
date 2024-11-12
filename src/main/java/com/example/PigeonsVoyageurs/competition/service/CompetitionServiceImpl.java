@@ -6,10 +6,12 @@ import com.example.PigeonsVoyageurs.competition.CompetitionRepository;
 import com.example.PigeonsVoyageurs.competition.dto.CompetitionRequestDTO;
 import com.example.PigeonsVoyageurs.competition.dto.CompetitionResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CompetitionServiceImpl implements CompetitionService{
 
     private final CompetitionRepository seasonRepository;
