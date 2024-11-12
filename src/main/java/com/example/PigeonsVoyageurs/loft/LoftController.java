@@ -3,7 +3,6 @@ package com.example.PigeonsVoyageurs.loft;
 import com.example.PigeonsVoyageurs.loft.dto.LoftRequestDTO;
 import com.example.PigeonsVoyageurs.loft.dto.LoftResponseDTO;
 import com.example.PigeonsVoyageurs.loft.service.LoftServiceImpl;
-import com.example.PigeonsVoyageurs.loft.dto.LoftResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +27,11 @@ public class LoftController {
     public ResponseEntity<LoftResponseDTO> createLoft(@RequestBody LoftRequestDTO loftDTO){
         LoftResponseDTO createdLoft = loftService.save(loftDTO);
         return new ResponseEntity<>(createdLoft, HttpStatus.CREATED);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<LoftResponseDTO> updateLoft(@RequestBody LoftRequestDTO loftDTO, @PathVariable String id){
+        LoftResponseDTO updatedLoft = loftService.update(id, loftDTO);
+        return new ResponseEntity<>(updatedLoft, HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<LoftResponseDTO> getLoftById(@PathVariable String id) {
