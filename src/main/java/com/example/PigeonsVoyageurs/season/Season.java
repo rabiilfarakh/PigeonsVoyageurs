@@ -67,4 +67,8 @@ public class Season {
         this.endDate = endDate;
         this.competitions = competitions;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
