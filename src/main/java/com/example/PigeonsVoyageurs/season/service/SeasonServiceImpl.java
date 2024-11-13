@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,5 +47,9 @@ public class SeasonServiceImpl implements SeasonService {
     @Override
     public void delete(String id) {
         seasonRepository.deleteById(id);
+    }
+
+    public Optional<Season> findByName(String name) {
+        return seasonRepository.findByName(name);
     }
 }
