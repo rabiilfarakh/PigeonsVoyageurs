@@ -1,8 +1,5 @@
 package com.example.PigeonsVoyageurs.coordinate;
 
-import lombok.Data;
-
-@Data
 public class Coordinate {
     private double latitude;
     private double longitude;
@@ -16,12 +13,12 @@ public class Coordinate {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
     public double getLongitude() {
         return longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public void setLongitude(double longitude) {
