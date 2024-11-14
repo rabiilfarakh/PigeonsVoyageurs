@@ -25,8 +25,6 @@ public class Competition {
 
     private List<Ranking> rankings;
 
-
-
     public String getId() {
         return id;
     }

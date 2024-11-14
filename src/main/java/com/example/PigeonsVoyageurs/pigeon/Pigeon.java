@@ -18,19 +18,6 @@ public class Pigeon {
 
     public Pigeon(){}
 
-    public Pigeon(Sexe sexe, String color, int age, List<Ranking> rankings) {
-        this.sexe = sexe;
-        this.color = color;
-        this.age = age;
-        this.rankings = rankings;
-    }
-
-    public Pigeon(Sexe sexe, String color, int age) {
-        this.sexe = sexe;
-        this.color = color;
-        this.age = age;
-    }
-
     public String getPigeonRing() {
         return pigeonRing;
     }
