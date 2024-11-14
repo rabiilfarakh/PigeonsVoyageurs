@@ -18,12 +18,6 @@ public class Organiser {
 
     public Organiser() {}
 
-    public Organiser(String userName, String password, String email) {
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-    }
-
     public String getId() {
         return id;
     }

@@ -26,23 +26,6 @@ public class Competition {
     public Competition() {
     }
 
-    public Competition(List<Ranking> rankings, Season season, double distance, LocalDateTime start, Coordinate coordinate, String raceName) {
-        this.rankings = rankings;
-        this.season = season;
-        Distance = distance;
-        this.start = start;
-        this.coordinate = coordinate;
-        this.raceName = raceName;
-    }
-
-    public Competition(Season season, double distance, LocalDateTime start, Coordinate coordinate, String raceName) {
-        this.season = season;
-        Distance = distance;
-        this.start = start;
-        this.coordinate = coordinate;
-        this.raceName = raceName;
-    }
-
     public String getId() {
         return id;
     }
