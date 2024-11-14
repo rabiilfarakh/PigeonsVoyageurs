@@ -5,6 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalTime;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
@@ -21,9 +24,8 @@ class CalculatorTest {
 
             double result = Math.round(Calculator.calculateDistance(start, end));
 
-            assertEquals(5261.0, result);
+            assertEquals(5261.0, result, "the actual: "+result);
 
-            System.out.println("the actual: "+result);
         }
         @Test
         @DisplayName("Negative coordinates case")
@@ -33,9 +35,32 @@ class CalculatorTest {
 
             double result = Math.round(Calculator.calculateDistance(start, end));
 
-            assertEquals(5261.0, result);
+            assertEquals(5261.0, result, "the actual: "+result);
+        }
+    }
 
-            System.out.println("the actual: "+result);
+    @Nested
+    @DisplayName("Duration calculation two instants")
+    class CalculateDuration{
+        @Test
+        @DisplayName("instants in the right order")
+        void RightOrderCase(){
+            Date startDate = new Date();
+            Date endDate = new Date(startDate.getTime() + 3600000);
+
+            LocalTime result = Calculator.calculateFlightDuration(startDate, endDate);
+
+            assertEquals(LocalTime.of(1,0,0), result, "Duration should be 01:00:00");
+        }
+        @Test
+        @DisplayName("instants not in the right order")
+        void WrongOrderCase(){
+            Date startDate = new Date();
+            Date endDate = new Date(startDate.getTime() - 3600000);
+
+            LocalTime result = Calculator.calculateFlightDuration(startDate, endDate);
+
+            assertEquals(LocalTime.of(1,0,0), result, "Duration should be 01:00:00");
         }
     }
 }
