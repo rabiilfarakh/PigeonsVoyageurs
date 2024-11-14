@@ -18,13 +18,12 @@ public class Competition {
     private String raceName;
     private Coordinate coordinate;
     private LocalDateTime start;
-    private double Distance;
+    private double distance;
+
     @DBRef
     private Season season;
-    private List<Ranking> rankings;
 
-    public Competition() {
-    }
+    private List<Ranking> rankings;
 
     public String getId() {
         return id;
@@ -55,11 +54,11 @@ public class Competition {
     }
 
     public double getDistance() {
-        return Distance;
+        return distance;
     }
 
     public void setDistance(double distance) {
-        Distance = distance;
+        distance = distance;
     }
 
     public Season getSeason() {
