@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 public class Calculator {
-    private static final double EARTH_RADIUS = 6378;
+    private static final double EARTH_RADIUS = 6378.1370;
 
     public static double calculateDistance(Coordinate start, Coordinate end){
         double dLat = Math.toRadians(start.getLatitude() - end.getLatitude());

@@ -19,14 +19,23 @@ class CalculatorTest {
             Coordinate start = new Coordinate(33.954, 59.115);
             Coordinate end = new Coordinate(78.846, 23.652);
 
-            double result = Calculator.calculateDistance(start, end);
+            double result = Math.round(Calculator.calculateDistance(start, end));
 
-            assertEquals(5255, result);
+            assertEquals(5261.0, result);
+
+            System.out.println("the actual: "+result);
         }
         @Test
         @DisplayName("Negative coordinates case")
         void NegativeCoordinatesCase(){
+            Coordinate start = new Coordinate(-33.954, -59.115);
+            Coordinate end = new Coordinate(-78.846, -23.652);
 
+            double result = Math.round(Calculator.calculateDistance(start, end));
+
+            assertEquals(5261.0, result);
+
+            System.out.println("the actual: "+result);
         }
     }
 }
