@@ -17,7 +17,6 @@ public class Breeder {
     private String userName;
     private String password;
     private String email;
-    private Coordinate coordinates;
 
     @DBRef
     private List<Pigeon> pigeons;
@@ -55,14 +54,6 @@ public class Breeder {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Coordinate getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Coordinate coordinates) {
-        this.coordinates = coordinates;
     }
 
     // Getters and Setters
