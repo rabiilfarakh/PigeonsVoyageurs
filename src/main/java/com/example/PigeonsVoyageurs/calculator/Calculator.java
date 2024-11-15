@@ -6,6 +6,9 @@ import lombok.Data;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
 
 public class Calculator {
     private static final double EARTH_RADIUS = 6378.1370;
@@ -30,5 +33,24 @@ public class Calculator {
         Duration duration = Duration.between(date1.toInstant(), date2.toInstant());
         Duration absDuration = duration.abs();
         return LocalTime.ofSecondOfDay(absDuration.getSeconds());
+    }
+
+    public static double distanceAvg(List<Double> distances){
+            OptionalDouble optionalAvg = distances.stream().mapToDouble(Double::doubleValue).average();
+            return optionalAvg.orElseThrow(NullPointerException::new);
+    }
+    public static double distanceCoefficient(double traveledDistance, double distanceAvg){
+        if (traveledDistance == 0){
+            throw new IllegalArgumentException("The traveled distance can not be null");
+        }else {
+            return distanceAvg / traveledDistance;
+        }
+    }
+    public static double flightSpeed(double traveledDistance, double flightDuration, double distanceCoefficient){
+        if (flightDuration == 0){
+            throw new IllegalArgumentException("The flight duration can not be null");
+        }else {
+            return (traveledDistance / flightDuration) * distanceCoefficient;
+        }
     }
 }
