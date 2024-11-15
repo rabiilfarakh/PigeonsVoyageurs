@@ -25,14 +25,6 @@ public class Breeder {
     public Breeder() {
     }
 
-    public Breeder(String id, String userName, String password, String email, Coordinate coordinates) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        this.coordinates = coordinates;
-    }
-
     public String getId() {
         return id;
     }
