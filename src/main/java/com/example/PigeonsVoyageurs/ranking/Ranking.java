@@ -83,4 +83,8 @@ public class Ranking {
     public void setScore(double score) {
         this.score = score;
     }
+
+    public double calculateScore(double topSpeed){
+        return (this.speed * 100.0) / topSpeed;
+    }
 }
