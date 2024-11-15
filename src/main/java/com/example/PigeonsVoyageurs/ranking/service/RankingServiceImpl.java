@@ -42,11 +42,10 @@ public class RankingServiceImpl implements RankingService {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public void delete(String id) {
-        if (!rankingRepository.existsById(id)) {
-            throw new RuntimeException("Ranking not found");
-        }
-        rankingRepository.deleteById(id);
+        Ranking ranking = rankingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ranking not found"));
+        rankingRepository.delete(ranking);
     }
+
 }
