@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,6 +62,25 @@ class CalculatorTest {
             LocalTime result = Calculator.calculateFlightDuration(startDate, endDate);
 
             assertEquals(LocalTime.of(1,0,0), result, "Duration should be 01:00:00");
+        }
+    }
+    @Nested
+    @DisplayName("Distances average calculation")
+    class CalculateDistanceAvg{
+        @Test
+        @DisplayName("Case of not empty distances list")
+        void DistanceListNotEmpty(){
+            List<Double> distances = List.of(10.0, 20.0, 30.0);
+            double result = Calculator.distanceAvg(distances);
+            assertEquals(20.0, result, 0.0001, "The average should be 20.0");
+        }
+        @Test
+        @DisplayName("Case of null distances list")
+        void DistanceListEmpty(){
+            List<Double> distances = List.of();
+
+            assertThrows(NullPointerException.class, () -> Calculator.distanceAvg(distances),
+                    "NullPointerException should be thrown for an empty list.");
         }
     }
 }
