@@ -83,4 +83,77 @@ class CalculatorTest {
                     "NullPointerException should be thrown for an empty list.");
         }
     }
+    @Nested
+    @DisplayName("Distance Coefficient Calculation")
+    class DistanceCoefficientTests {
+
+        @Test
+        @DisplayName("Case of valid traveled distance and average distance")
+        void validInputs() {
+            double traveledDistance = 100.0;
+            double distanceAvg = 50.0;
+
+            double result = Calculator.distanceCoefficient(traveledDistance, distanceAvg);
+            assertEquals(0.5, result, 0.0001, "The coefficient should be 0.5");
+        }
+
+        @Test
+        @DisplayName("Case of zero traveled distance")
+        void zeroTraveledDistance() {
+            double traveledDistance = 0.0;
+            double distanceAvg = 50.0;
+
+            assertThrows(IllegalArgumentException.class,
+                    () -> Calculator.distanceCoefficient(traveledDistance, distanceAvg),
+                    "IllegalArgumentException should be thrown for zero traveled distance.");
+        }
+
+        @Test
+        @DisplayName("Case of zero average distance")
+        void zeroDistanceAvg() {
+            double traveledDistance = 100.0;
+            double distanceAvg = 0.0;
+
+            double result = Calculator.distanceCoefficient(traveledDistance, distanceAvg);
+            assertEquals(0.0, result, 0.0001, "The coefficient should be 0.0");
+        }
+    }
+    @Nested
+    @DisplayName("Flight Speed Calculation")
+    class FlightSpeedTests {
+
+        @Test
+        @DisplayName("Case of valid inputs")
+        void validInputs() {
+            double traveledDistance = 500.0;
+            double flightDuration = 5.0;
+            double distanceCoefficient = 0.8;
+
+            double result = Calculator.flightSpeed(traveledDistance, flightDuration, distanceCoefficient);
+            assertEquals(80.0, result, 0.0001, "The flight speed should be 80.0");
+        }
+
+        @Test
+        @DisplayName("Case of zero flight duration")
+        void zeroFlightDuration() {
+            double traveledDistance = 500.0;
+            double flightDuration = 0.0;
+            double distanceCoefficient = 0.8;
+
+            assertThrows(IllegalArgumentException.class,
+                    () -> Calculator.flightSpeed(traveledDistance, flightDuration, distanceCoefficient),
+                    "IllegalArgumentException should be thrown for zero flight duration.");
+        }
+
+        @Test
+        @DisplayName("Case of zero traveled distance")
+        void zeroTraveledDistance() {
+            double traveledDistance = 0.0;
+            double flightDuration = 5.0;
+            double distanceCoefficient = 0.8;
+
+            double result = Calculator.flightSpeed(traveledDistance, flightDuration, distanceCoefficient);
+            assertEquals(0.0, result, 0.0001, "The flight speed should be 0.0 when traveled distance is 0.");
+        }
+    }
 }
