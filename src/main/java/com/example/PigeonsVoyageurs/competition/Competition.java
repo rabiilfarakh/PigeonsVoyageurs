@@ -25,8 +25,6 @@ public class Competition {
 
     private List<Ranking> rankings;
 
-
-
     public String getId() {
         return id;
     }
@@ -77,5 +75,9 @@ public class Competition {
 
     public void setRankings(List<Ranking> rankings) {
         this.rankings = rankings;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
